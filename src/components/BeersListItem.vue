@@ -16,6 +16,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+ list-style-type: none;
 
 </style>

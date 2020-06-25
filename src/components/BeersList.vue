@@ -1,7 +1,10 @@
 <template>
-  <ul>
-      <beers-list-item v-for="(beer, index) in beers" :beer = "beer" :key = "index"></beers-list-item>
-  </ul>
+   <div> 
+       <h3>All beers</h3>
+    <ul>
+        <beers-list-item v-for="(beer, index) in beers" :beer = "beer" :key = "index"></beers-list-item>
+    </ul>
+  </div>
 
 </template>
     
@@ -17,6 +20,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
+ div {
+     width: 25%;
+ }
 </style>
+

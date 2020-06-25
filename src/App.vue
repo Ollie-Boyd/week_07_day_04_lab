@@ -1,23 +1,31 @@
 <template>
   <div id="app">
+    <favs-list :beers="favBeers"></favs-list>
     <beers-list :beers="beers"></beers-list>
+    <beer-detail :beer="selectedBeer"></beer-detail>
   </div>
 </template>
 
 <script>
 import { eventBus } from './main.js'
 import BeersList from './components/BeersList.vue'
+import BeerDetail from './components/BeerDetail.vue'
+import FavsList from './components/FavsList.vue'
+
 
 export default {
   data(){
     return {
       beers: [],
-      selectedBeer: null
+      selectedBeer: null,
+      favBeers: []
     }
   },
   name: 'App',
   components: {
-    "beers-list": BeersList
+    "beers-list": BeersList,
+    "beer-detail": BeerDetail,
+    "favs-list": FavsList
   },
 
   mounted() {
@@ -27,6 +35,10 @@ export default {
 
     eventBus.$on('beer-selected', (beer) => {
      this.selectedBeer = beer
+    })
+    eventBus.$on('added-fav-beer', (beer) => {
+     if (!this.favBeers.includes(beer)) this.favBeers.push(beer)
+     
     })
   }
 }
@@ -39,6 +51,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 0px;
+  margin-bottom: 0px;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+
+  background-image: url("./assets/brewdog-background.png");
+  background-size: 100% 100%;
 }
 </style>
